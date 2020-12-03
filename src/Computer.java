@@ -1,114 +1,3 @@
-class Software{
-    private String softwareName;
-    private String softwareVersion;
-    private int softwareSpaceRequirement;
-    private int softwareRamMemoryRequirement;
-
-    //Builder
-    public Software(){}
-
-    //Getters
-    public String getSoftwareName() {
-        return softwareName;
-    }
-
-    public String getSoftwareVersion() {
-        return softwareVersion;
-    }
-
-    public int getSoftwareSpaceRequirement() {
-        return softwareSpaceRequirement;
-    }
-
-    public int getSoftwareRamMemoryRequirement() {
-        return softwareRamMemoryRequirement;
-    }
-
-    //Setters
-    public void setSoftwareName(String softwareName) {
-        this.softwareName = softwareName;
-    }
-
-    public void setSoftwareVersion(String softwareVersion) {
-        this.softwareVersion = softwareVersion;
-    }
-
-    public void setSoftwareSpaceRequirement(int softwareSpaceRequirement) {
-        this.softwareSpaceRequirement = softwareSpaceRequirement;
-    }
-
-    public void setSoftwareRamMemoryRequirement(int softwareRamMemoryRequirement) {
-        this.softwareRamMemoryRequirement = softwareRamMemoryRequirement;
-    }
-}
-
-class OperatingSystem{
-    private String osName;
-    private String osVersion;
-    private String osArchitecture;
-    private boolean osOnlyCommand;
-    private int osSpaceRequirement;
-    private int osRamMemmoryRequirement;
-    private int[] osSoftware;
-
-    //Builder
-    public OperatingSystem(){}
-
-    //Getters
-    public String getOsName() {
-        return osName;
-    }
-
-    public String getOsVersion() {
-        return osVersion;
-    }
-
-    public String getOsArchitecture() {
-        return osArchitecture;
-    }
-
-    public int getOsSpaceRequirement() {
-        return osSpaceRequirement;
-    }
-
-    public int getOsRamMemmoryRequirement() {
-        return osRamMemmoryRequirement;
-    }
-
-    public int[] getOsSoftware() {
-        return osSoftware;
-    }
-
-    //Setters
-    public void setOsName(String osName) {
-        this.osName = osName;
-    }
-
-    public void setOsVersion(String osVersion) {
-        this.osVersion = osVersion;
-    }
-
-    public void setOsArchitecture(String osArchitecture) {
-        this.osArchitecture = osArchitecture;
-    }
-
-    public void setOsOnlyCommand(boolean osOnlyCommand) {
-        this.osOnlyCommand = osOnlyCommand;
-    }
-
-    public void setOsSpaceRequirement(int osSpaceRequirement) {
-        this.osSpaceRequirement = osSpaceRequirement;
-    }
-
-    public void setOsRamMemmoryRequirement(int osRamMemmoryRequirement) {
-        this.osRamMemmoryRequirement = osRamMemmoryRequirement;
-    }
-
-    public void setOsSoftware(int[] osSoftware) {
-        this.osSoftware = osSoftware;
-    }
-}
-
 public class Computer {
     private String name;
     private int ramMemory;
@@ -116,7 +5,12 @@ public class Computer {
     private OperatingSystem os;
 
     //Builder
-    public Computer(){}
+    public Computer(String name, int ramMemory, int hardDisk, OperatingSystem os) {
+        this.name = name;
+        this.ramMemory = ramMemory;
+        this.hardDisk = hardDisk;
+        this.os = os;
+    }
 
     //Getters
     public String getName() {
@@ -150,6 +44,26 @@ public class Computer {
 
     public void setOs(OperatingSystem os) {
         this.os = os;
+    }
+
+    //Methods
+
+    public void install(OperatingSystem os){
+        if (this.os!=null && hardDisk>os.getOsSpaceRequirement() && ramMemory>os.getOsRamMemmoryRequirement()) {
+            hardDisk -= os.getOsSpaceRequirement();
+            ramMemory-= os.getOsRamMemmoryRequirement();
+        }
+        else
+        {
+            System.out.println("No hay espacio en el disco o suficiente memoria RAM");
+        }
+    }
+
+    public static void main(String[] args) {
+        OperatingSystem os1=new OperatingSystem("Windows", "7.2", "RISC",true , 100, 1024);
+        Computer c1=new Computer("Carlos", 2048, 500, os1);
+        c1.install(os1);
+        System.out.println(c1.hardDisk + " " + c1.ramMemory);
     }
 }
 
