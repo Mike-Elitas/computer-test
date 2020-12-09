@@ -87,7 +87,7 @@ public class OperatingSystem {
         public void installSoftware(Software osSoftware, Computer c){
 
                 if(osSoftware.getSoftwareSpaceRequirement()< c.getHardDisk()){
-                    this.osSoftware[0+this.osSoftware.length]=osSoftware;
+                    this.osSoftware[0]=osSoftware;
                 }else{
                     System.out.println("No queda espacio para instalar");
                 }

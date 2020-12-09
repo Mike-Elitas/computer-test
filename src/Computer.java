@@ -65,7 +65,7 @@ public class Computer {
         c1.install(os1);
         System.out.println(c1.hardDisk + " " + c1.ramMemory);
         Software sw1=new Software("Paint", "1.0", 10, 20);
-        os1.installSoftware(os1.getOsSoftware()[os1.getSwInstalado()],c1 );
+        os1.installSoftware( sw1=new Software("Paint", "1.0", 10, 20),c1 );
     }
 }
 
