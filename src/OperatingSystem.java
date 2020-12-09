@@ -6,18 +6,22 @@ public class OperatingSystem {
         private int osSpaceRequirement;
         private int osRamMemmoryRequirement;
         private Software[] osSoftware;
+        private int swInstalado=0;
 
         //Builder
-        public OperatingSystem(String osName, String osVersion, String osArchitecture, boolean osOnlyCommand, int osSpaceRequirement, int osRamMemmoryRequirement) {
-            this.osName = osName;
-            this.osVersion = osVersion;
-            this.osArchitecture = osArchitecture;
-            this.osOnlyCommand = osOnlyCommand;
-            this.osSpaceRequirement = osSpaceRequirement;
-            this.osRamMemmoryRequirement = osRamMemmoryRequirement;
-        }
 
-        //Getters
+
+    public OperatingSystem(String osName, String osVersion, String osArchitecture, boolean osOnlyCommand, int osSpaceRequirement, int osRamMemmoryRequirement, int swInstalado) {
+        this.osName = osName;
+        this.osVersion = osVersion;
+        this.osArchitecture = osArchitecture;
+        this.osOnlyCommand = osOnlyCommand;
+        this.osSpaceRequirement = osSpaceRequirement;
+        this.osRamMemmoryRequirement = osRamMemmoryRequirement;
+        this.swInstalado = swInstalado;
+    }
+
+    //Getters
         public String getOsName() {
             return osName;
         }
@@ -41,8 +45,14 @@ public class OperatingSystem {
         public Software[] getOsSoftware() {
             return osSoftware;
         }
+    public boolean isOsOnlyCommand() {
+        return osOnlyCommand;
+    }
+    public int getSwInstalado() {
+        return swInstalado;
+    }
 
-        //Setters
+    //Setters
         public void setOsName(String osName) {
             this.osName = osName;
         }
@@ -66,8 +76,30 @@ public class OperatingSystem {
         public void setOsRamMemmoryRequirement(int osRamMemmoryRequirement) {
             this.osRamMemmoryRequirement = osRamMemmoryRequirement;
         }
+    public void setSwInstalado(int swInstalado) {
+        this.swInstalado = swInstalado;
+    }
 
-        public void setOsSoftware(Software[] osSoftware) {
+    public void setOsSoftware(Software[] osSoftware) {
             this.osSoftware = osSoftware;
         }
-    }
+
+        public void installSoftware(Software osSoftware, Computer c){
+
+                if(osSoftware.getSoftwareSpaceRequirement()< c.getHardDisk()){
+                    this.osSoftware[0+this.osSoftware.length]=osSoftware;
+                }else{
+                    System.out.println("No queda espacio para instalar");
+                }
+
+
+        }
+        public void viewSoftware(Software osSoftware, Computer c){
+            for (int i = 0; i <swInstalado ; i++) {
+                    this.osSoftware[i]=osSoftware;
+                    System.out.print(osSoftware + ", ");
+            }
+
+        }
+}
+

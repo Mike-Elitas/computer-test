@@ -60,10 +60,12 @@ public class Computer {
     }
 
     public static void main(String[] args) {
-        OperatingSystem os1=new OperatingSystem("Windows", "7.2", "RISC",true , 100, 1024);
+        OperatingSystem os1=new OperatingSystem("Windows", "7.2", "RISC",true , 100, 1024, 0);
         Computer c1=new Computer("Carlos", 2048, 500, os1);
         c1.install(os1);
         System.out.println(c1.hardDisk + " " + c1.ramMemory);
+        Software sw1=new Software("Paint", "1.0", 10, 20);
+        os1.installSoftware(os1.getOsSoftware()[os1.getSwInstalado()],c1 );
     }
 }
 
